@@ -72,7 +72,7 @@ fn is_valid_pawn_move(
   col_diff: Int,
   row_diff: Int,
 ) -> Bool {
-  let #(_, from_row) = from
+  let #(from_col, from_row) = from
   let direction = case color {
     types.White -> 1
     // White moves up
@@ -84,35 +84,27 @@ fn is_valid_pawn_move(
     types.Black -> 6
   }
 
-  case col_diff, row_diff {
-    // Forward move
-    0, diff if diff == direction -> {
-      case board.get_square(board_state, to) {
-        Ok(types.Empty) -> True
-        _ -> False
+  case board.get_square(board_state, to) {
+    Ok(types.Occupied(_)) -> {
+      // Diagonal capture
+      int_abs(col_diff) == 1 && row_diff == direction
+    }
+    Ok(types.Empty) -> {
+      // Forward move
+      case col_diff, row_diff {
+        0, diff if diff == direction -> True
+        // Double forward move from starting position
+        0, diff if diff == direction * 2 && from_row == starting_row -> {
+          let middle_square_coord = #(from_col, from_row + direction)
+          case board.get_square(board_state, middle_square_coord) {
+            Ok(types.Empty) -> True
+            _ -> False
+          }
+        }
+        _, _ -> False
       }
     }
-    // Double forward move from starting position
-    0, diff if diff == direction * 2 && from_row == starting_row -> {
-      case board.get_square(board_state, to) {
-        Ok(types.Empty) -> True
-        _ -> False
-      }
-    }
-    // Diagonal capture
-    1, row_move if row_move == direction -> {
-      case board.get_square(board_state, to) {
-        Ok(types.Occupied(_)) -> True
-        _ -> False
-      }
-    }
-    -1, row_move if row_move == direction -> {
-      case board.get_square(board_state, to) {
-        Ok(types.Occupied(_)) -> True
-        _ -> False
-      }
-    }
-    _, _ -> False
+    _ -> False
   }
 }
 

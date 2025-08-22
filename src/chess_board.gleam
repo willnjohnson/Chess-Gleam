@@ -8,21 +8,6 @@ import gleam/string
 
 // Initializes the board with all the pieces in their starting positions.
 pub fn initial_board() -> types.Board {
-  let black_back_row = [
-    types.Occupied(types.Piece(types.Black, types.Rook)),
-    types.Occupied(types.Piece(types.Black, types.Knight)),
-    types.Occupied(types.Piece(types.Black, types.Bishop)),
-    types.Occupied(types.Piece(types.Black, types.Queen)),
-    types.Occupied(types.Piece(types.Black, types.King)),
-    types.Occupied(types.Piece(types.Black, types.Bishop)),
-    types.Occupied(types.Piece(types.Black, types.Knight)),
-    types.Occupied(types.Piece(types.Black, types.Rook)),
-  ]
-  let black_pawns =
-    list.repeat(types.Occupied(types.Piece(types.Black, types.Pawn)), 8)
-  let empty_rows = list.repeat(types.Empty, 32)
-  let white_pawns =
-    list.repeat(types.Occupied(types.Piece(types.White, types.Pawn)), 8)
   let white_back_row = [
     types.Occupied(types.Piece(types.White, types.Rook)),
     types.Occupied(types.Piece(types.White, types.Knight)),
@@ -33,11 +18,26 @@ pub fn initial_board() -> types.Board {
     types.Occupied(types.Piece(types.White, types.Knight)),
     types.Occupied(types.Piece(types.White, types.Rook)),
   ]
+  let white_pawns =
+    list.repeat(types.Occupied(types.Piece(types.White, types.Pawn)), 8)
+  let empty_rows = list.repeat(types.Empty, 32)
+  let black_pawns =
+    list.repeat(types.Occupied(types.Piece(types.Black, types.Pawn)), 8)
+  let black_back_row = [
+    types.Occupied(types.Piece(types.Black, types.Rook)),
+    types.Occupied(types.Piece(types.Black, types.Knight)),
+    types.Occupied(types.Piece(types.Black, types.Bishop)),
+    types.Occupied(types.Piece(types.Black, types.Queen)),
+    types.Occupied(types.Piece(types.Black, types.King)),
+    types.Occupied(types.Piece(types.Black, types.Bishop)),
+    types.Occupied(types.Piece(types.Black, types.Knight)),
+    types.Occupied(types.Piece(types.Black, types.Rook)),
+  ]
 
-  list.append(black_back_row, black_pawns)
+  list.append(white_back_row, white_pawns)
   |> list.append(empty_rows)
-  |> list.append(white_pawns)
-  |> list.append(white_back_row)
+  |> list.append(black_pawns)
+  |> list.append(black_back_row)
 }
 
 // Prints the current state of the board to the terminal.
