@@ -2,6 +2,9 @@
 
 A fun, little command-line chess game built with the Gleam programming language.
 
+# Preview
+<img width="464" height="881" alt="image" src="https://github.com/user-attachments/assets/e2cb9418-8967-4c6f-969f-01e5d95c0d05" />
+
 ## Features
 
 * **Interactive Command-Line Interface:** Play chess directly in your terminal.
