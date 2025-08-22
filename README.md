@@ -1,22 +1,28 @@
 # chess_gleam
 
-[![Package Version](https://img.shields.io/hexpm/v/chess_gleam)](https://hex.pm/packages/chess_gleam)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/chess_gleam/)
+A fun, little command-line chess game built with the Gleam programming language.
 
-```sh
-gleam add chess_gleam@1
-```
-```gleam
-import chess_gleam
+## Features
 
-pub fn main() -> Nil {
-  // TODO: An example of the project in use
-}
-```
+* **Interactive Command-Line Interface:** Play chess directly in your terminal.
+* **Full Board Visualization:** Displays the board using Unicode chess pieces.
+* **Basic Move Validation:** Enforces the legal moves for all chess pieces.
+* **Player Turns:** Manages turns between White and Black players.
+* **Move Suggestions:** Enter a square coordinate (e.g., `e2`) to see all possible moves for the piece on that square.
 
-Further documentation can be found at <https://hexdocs.pm/chess_gleam>.
+## How to Play
+
+1.  Make sure you have Gleam installed.
+2.  Clone this repository.
+3.  Run the game with the following command:
+    ```sh
+    gleam run
+    ```
+4.  Follow the on-screen instructions to enter your moves in the format `from->to` (e.g., `e2->e4`).
 
 ## Development
+
+To run the project locally:
 
 ```sh
 gleam run   # Run the project
