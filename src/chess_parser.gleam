@@ -1,6 +1,5 @@
 // src/chess_parser.gleam
 import chess_types as types
-import gleam/list
 import gleam/string
 
 // Parses a move string (e.g., "e2->e4") into a structured Move type.
